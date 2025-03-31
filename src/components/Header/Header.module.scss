@@ -1,0 +1,30 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+}
+
+.logo {
+    color: #746452;
+    font-size: 48px;
+    font-weight: 900;
+}
+
+.gameOver {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.goTitle {
+    color: #746452;
+    font-size: 48px;
+    font-weight: 600;
+    padding-bottom: 10px;
+}
+
+.goSubtitle {
+    color: #978876;
+}
