@@ -12,6 +12,8 @@ const GameBoard = () => {
     const board = useSelector((state: RootState) => state.game.board);
     const score = useSelector((state: RootState) => state.game.score);
     const gameOver = useSelector((state: RootState) => state.game.gameOver);
+    const newTile = useSelector((state: RootState) => state.game.newTile);
+    const mergedTiles = useSelector((state: RootState) => state.game.mergedTiles);
 
     const dispatch: AppDispatch = useDispatch();
 
@@ -71,9 +73,34 @@ const GameBoard = () => {
         };
     }, [handleKeyDown]);
 
+    const isMerged = useCallback(
+        (row: number, column: number) => {
+            if (mergedTiles.length === 0) {
+                return false;
+            }
+
+            for (let i = 0; i < mergedTiles.length; i++) {
+                if (mergedTiles[i][0] !== row || mergedTiles[i][1] !== column) {
+                    return false;
+                }
+            }
+            return true;
+        },
+        [mergedTiles],
+    );
+
     return (
         <div className={styles.board}>
-            {board.map((row, rowIndex) => row.map((tile, colIndex) => <Tile key={`tile-${rowIndex}-${colIndex}`} tile={tile} />))}
+            {board.map((row, rowIndex) =>
+                row.map((tile, colIndex) => (
+                    <Tile
+                        key={`tile-${rowIndex}-${colIndex}`}
+                        tile={tile}
+                        isNew={newTile ? rowIndex === newTile[0] && colIndex === newTile[1] : false}
+                        isMerged={isMerged(rowIndex, colIndex)}
+                    />
+                )),
+            )}
         </div>
     );
 };

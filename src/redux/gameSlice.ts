@@ -1,13 +1,17 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import { GameState } from '../entities/GameState.interface';
-import { getRandomEmptyTail, generateRandomTileValue, processColumns, isGameOver, processRow } from '../utils/common';
+import { getRandomEmptyTail, generateRandomTileValue } from '../utils/tileUtils/tileUtils';
+import { processColumns, processRow } from '../utils/gameLogicUtils/gameLogicUtils';
+import { isGameOver } from '../utils/gameStateUtils/gameStateUtils';
 import { EventKey } from '../entities/enums/eventKey.enum';
 
 const initialState: GameState = {
     board: Array.from({ length: 4 }, () => Array(4).fill(0)),
     score: 0,
     gameOver: false,
+    newTile: [],
+    mergedTiles: [],
 };
 
 export const gameSlice = createSlice({
@@ -28,10 +32,12 @@ export const gameSlice = createSlice({
             state.score = 0;
         },
         addTile: (state) => {
-            const randomTails = getRandomEmptyTail(state.board, 1);
+            const randomTail = getRandomEmptyTail(state.board, 1);
+            state.newTile = randomTail[0];
+
             state.board = state.board.map((row, rowIndex) =>
                 row.map((cell, colIndex) =>
-                    randomTails.some(([i, j]) => i === rowIndex && j === colIndex) ? generateRandomTileValue() : cell,
+                    randomTail.some(([i, j]) => i === rowIndex && j === colIndex) ? generateRandomTileValue() : cell,
                 ),
             );
         },
@@ -39,22 +45,23 @@ export const gameSlice = createSlice({
             const direction = action.payload;
 
             let newBoard = state.board;
+            state.mergedTiles = [];
 
             switch (direction) {
                 case EventKey.Left:
-                    newBoard = newBoard.map((row) => processRow(row, state));
+                    newBoard = newBoard.map((row, i) => processRow(row, i, state));
                     break;
 
                 case EventKey.Right:
-                    newBoard = newBoard.map((row) => processRow([...row].reverse(), state).reverse());
+                    newBoard = newBoard.map((row, i) => processRow([...row].reverse(), i, state, true).reverse());
                     break;
 
                 case EventKey.Up:
-                    newBoard = processColumns(newBoard, (row) => processRow(row, state));
+                    newBoard = processColumns(newBoard, (row, i) => processRow(row, i, state));
                     break;
 
                 case EventKey.Down:
-                    newBoard = processColumns(newBoard, (row) => processRow([...row].reverse(), state).reverse());
+                    newBoard = processColumns(newBoard, (row, i) => processRow([...row].reverse(), i, state, true).reverse());
                     break;
 
                 default:
@@ -78,14 +85,19 @@ export const gameSlice = createSlice({
 
         // TODO: Remove this
         mockGameOver: (state) => {
-            state.board = [
-                [2, 4, 8, 16],
-                [32, 64, 128, 256],
-                [512, 1024, 2048, 4096],
-                [2, 4, 8, 16],
-            ];
+            // state.board = [
+            //     [2, 8, 4, 2],
+            //     [8, 32, 64, 16],
+            //     [16, 128, 8, 8],
+            //     [4, 8, 2, 4],
+            // ];
 
-            state.gameOver = true;
+            state.board = [
+                [0, 0, 0, 0],
+                [2, 2, 4, 4],
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+            ];
         },
     },
 });
