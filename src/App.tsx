@@ -6,7 +6,7 @@ import { useState, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
 import styles from './App.module.scss';
-import { initGame } from './redux/gameSlice';
+import { initGame } from './redux/gameSlice/gameSlice';
 
 function App() {
     const [isModalOpen, setIsModalOpen] = useState<boolean>(false);

@@ -1,5 +1,6 @@
 export interface TileProps {
     tile: number;
     isNew: boolean;
-    isMerged: boolean;
+    row: number;
+    column: number;
 }

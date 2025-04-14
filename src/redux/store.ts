@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import gameReducer from './gameSlice';
+import gameReducer from './gameSlice/gameSlice';
 import historyReducer from './historySlice';
 
 export const store = configureStore({

@@ -1,12 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { GameState } from '../entities/GameState.interface';
-import { getRandomEmptyTail, generateRandomTileValue } from '../utils/tileUtils/tileUtils';
-import { processColumns, processRow } from '../utils/gameLogicUtils/gameLogicUtils';
-import { isGameOver } from '../utils/gameStateUtils/gameStateUtils';
-import { EventKey } from '../entities/enums/eventKey.enum';
+import { GameState } from '../../entities/GameState.interface';
+import { getRandomEmptyTail, generateRandomTileValue } from '../../utils/tileUtils/tileUtils';
+import { processColumns, processRow } from '../../utils/gameLogicUtils/gameLogicUtils';
+import { isGameOver } from '../../utils/gameStateUtils/gameStateUtils';
+import { EventKey } from '../../entities/enums/eventKey.enum';
 
-const initialState: GameState = {
+export const initialState: GameState = {
     board: Array.from({ length: 4 }, () => Array(4).fill(0)),
     score: 0,
     gameOver: false,
@@ -56,13 +56,17 @@ export const gameSlice = createSlice({
                     newBoard = newBoard.map((row, i) => processRow([...row].reverse(), i, state, true).reverse());
                     break;
 
-                case EventKey.Up:
-                    newBoard = processColumns(newBoard, (row, i) => processRow(row, i, state));
+                case EventKey.Up: {
+                    const board = processColumns(newBoard, (row, i) => processRow(row, i, state, false, true));
+                    newBoard = board;
                     break;
+                }
 
-                case EventKey.Down:
-                    newBoard = processColumns(newBoard, (row, i) => processRow([...row].reverse(), i, state, true).reverse());
+                case EventKey.Down: {
+                    const board = processColumns(newBoard, (row, i) => processRow([...row].reverse(), i, state, true, true).reverse());
+                    newBoard = board;
                     break;
+                }
 
                 default:
                     return;
@@ -92,11 +96,18 @@ export const gameSlice = createSlice({
             //     [4, 8, 2, 4],
             // ];
 
+            // state.board = [
+            //     [0, 0, 0, 0],
+            //     [2, 2, 4, 4],
+            //     [0, 0, 0, 0],
+            //     [0, 0, 0, 0],
+            // ];
+
             state.board = [
-                [0, 0, 0, 0],
                 [2, 2, 4, 4],
-                [0, 0, 0, 0],
-                [0, 0, 0, 0],
+                [2, 2, 4, 4],
+                [4, 4, 8, 8],
+                [4, 4, 8, 8],
             ];
         },
     },

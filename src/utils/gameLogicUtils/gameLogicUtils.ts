@@ -32,7 +32,6 @@ export const compressArray = (
         return [rowIndex, reversed ? arr.length - 1 - newIndex : newIndex];
     });
 
-    console.log(compressedArr);
     return { compressedArr, score, merged };
 };
 
@@ -41,15 +40,24 @@ export const processRow = (
     rowIndex: number,
     state: { score: number; mergedTiles: number[][] },
     reversed = false,
+    vertical = false,
 ): number[] => {
     const { compressedArr, score, merged } = compressArray(row, rowIndex, reversed);
     state.score += score;
-    state.mergedTiles.push(...merged);
+
+    const correctedMerged = merged.map(([r, c]) => [c, r]);
+
+    if (vertical) {
+        state.mergedTiles.push(...correctedMerged);
+    } else {
+        state.mergedTiles.push(...merged);
+    }
+
     return compressedArr;
 };
 
 export const processColumns = (board: number[][], callback: (col: number[], colIndex: number) => number[]): number[][] => {
     const transposed = transposeMatrix(board);
-    const processed = transposed.map((row, i) => callback(row, i));
+    const processed = transposed.map((col, colIndex) => callback(col, colIndex));
     return transposeMatrix(processed);
 };

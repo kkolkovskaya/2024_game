@@ -2,7 +2,7 @@ import { ButtonVariant } from '../../entities/enums/button.enum';
 import Button from '../UI/Button/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from '../../redux/store';
-import { initGame, updateGameState } from '../../redux/gameSlice';
+import { initGame, updateGameState } from '../../redux/gameSlice/gameSlice';
 import { undo, addToHistory, clearHistory } from '../../redux/historySlice';
 
 import styles from './BottomPanel.module.scss';
