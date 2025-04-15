@@ -1,7 +1,7 @@
 export const hasEmptyCells = (board: number[][]): boolean => {
     for (const row of board) {
         if (row.includes(0)) {
-            return true; // Исправление логики
+            return true;
         }
     }
     return false;
@@ -9,7 +9,7 @@ export const hasEmptyCells = (board: number[][]): boolean => {
 
 export const isGameOver = (board: number[][]): boolean => {
     if (!hasEmptyCells(board)) {
-        return false; // Если есть пустые клетки, игра ещё не закончена
+        return false;
     }
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
