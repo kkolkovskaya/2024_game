@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { HistoryState } from '../entities/HistoryState.interface';
+import { HistoryState } from '../../entities/HistoryState.interface';
 
-const initialState: HistoryState = {
+export const initialState: HistoryState = {
     history: [],
 };
 
@@ -15,7 +15,7 @@ export const historySlice = createSlice({
 
             state.history.push({ board, score });
 
-            if (state.history.length >= 5) {
+            if (state.history.length > 5) {
                 state.history.shift();
             }
         },

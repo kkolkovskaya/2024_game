@@ -4,7 +4,7 @@ import { useEffect, useCallback, useMemo, useRef } from 'react';
 import { EventKey } from '../../entities/enums/eventKey.enum';
 import Tile from '../Tile/Tile';
 import { initGame, move, addTile, mockGameOver } from '../../redux/gameSlice/gameSlice';
-import { addToHistory } from '../../redux/historySlice';
+import { addToHistory } from '../../redux/historySlice/historySlice';
 
 import styles from './GameBoard.module.scss';
 

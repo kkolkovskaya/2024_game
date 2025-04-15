@@ -8,9 +8,10 @@ export const hasEmptyCells = (board: number[][]): boolean => {
 };
 
 export const isGameOver = (board: number[][]): boolean => {
-    if (!hasEmptyCells(board)) {
+    if (hasEmptyCells(board)) {
         return false;
     }
+
     for (let i = 0; i < board.length; i++) {
         for (let j = 0; j < board[i].length; j++) {
             if (j < board[i].length - 1 && board[i][j] === board[i][j + 1]) {

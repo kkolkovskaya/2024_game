@@ -3,7 +3,7 @@ import Button from '../UI/Button/Button';
 import { useSelector, useDispatch } from 'react-redux';
 import type { RootState, AppDispatch } from '../../redux/store';
 import { initGame, updateGameState } from '../../redux/gameSlice/gameSlice';
-import { undo, addToHistory, clearHistory } from '../../redux/historySlice';
+import { undo, addToHistory, clearHistory } from '../../redux/historySlice/historySlice';
 
 import styles from './BottomPanel.module.scss';
 import { useCallback } from 'react';

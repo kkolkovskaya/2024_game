@@ -182,4 +182,109 @@ describe('gameSlice - move action', () => {
         expect(state.gameOver).toEqual(false);
         expect(state.score).toEqual(72);
     });
+
+    it('should not trigger gameOver', () => {
+        const state = {
+            ...initialState,
+            board: [
+                [4, 32, 2, 8],
+                [4, 64, 8, 2],
+                [32, 8, 32, 4],
+                [16, 4, 0, 2],
+            ],
+        };
+
+        gameSlice.caseReducers.move(state, { payload: EventKey.Up, type: 'game/move' });
+
+        expect(state.gameOver).toEqual(false);
+    });
+
+    it('should trigger gameOver', () => {
+        const state = {
+            ...initialState,
+            board: [
+                [2, 4, 8, 16],
+                [32, 64, 128, 256],
+                [512, 1024, 2048, 4096],
+                [8, 16, 32, 64],
+            ],
+        };
+
+        gameSlice.caseReducers.move(state, { payload: EventKey.Right, type: 'game/move' });
+
+        expect(state.gameOver).toEqual(true);
+    });
+});
+
+describe('gameSlice - updateGameState', () => {
+    it('should update board and score from lastState', () => {
+        const state = { ...initialState };
+        const lastState = {
+            board: [
+                [2, 4, 8, 16],
+                [32, 64, 128, 256],
+                [512, 1024, 2048, 4096],
+                [8, 16, 32, 64],
+            ],
+            score: 1000,
+        };
+
+        gameSlice.caseReducers.updateGameState(state, { payload: { lastState, checkGameOver: false }, type: 'game/updateGameState' });
+
+        expect(state.board).toEqual(lastState.board);
+        expect(state.score).toBe(lastState.score);
+        expect(state.gameOver).toBe(false);
+    });
+
+    it('should update gameOver when checkGameOver is true', () => {
+        const state = { ...initialState };
+        const lastState = {
+            board: [
+                [2, 4, 8, 16],
+                [32, 64, 128, 256],
+                [512, 1024, 2048, 4096],
+                [8, 16, 32, 64],
+            ],
+            score: 1000,
+        };
+
+        gameSlice.caseReducers.updateGameState(state, { payload: { lastState, checkGameOver: true }, type: 'game/updateGameState' });
+
+        expect(state.gameOver).toBe(true);
+    });
+
+    it('should not update state if lastState is missing', () => {
+        const state = { ...initialState };
+
+        gameSlice.caseReducers.updateGameState(state, { payload: {}, type: 'game/updateGameState' });
+
+        expect(state.board).toEqual(initialState.board);
+        expect(state.score).toBe(initialState.score);
+        expect(state.gameOver).toBe(initialState.gameOver);
+    });
+
+    it('should not update state if lastState.board is missing', () => {
+        const state = { ...initialState };
+        const lastState = { score: 500 };
+
+        gameSlice.caseReducers.updateGameState(state, { payload: { lastState }, type: 'game/updateGameState' });
+
+        expect(state.board).toEqual(initialState.board);
+        expect(state.score).toBe(initialState.score);
+    });
+
+    it('should not update state if lastState.score is undefined', () => {
+        const state = { ...initialState };
+        const lastState = {
+            board: [
+                [0, 0, 0, 0],
+                [0, 0, 0, 0],
+            ],
+        };
+
+        gameSlice.caseReducers.updateGameState(state, { payload: { lastState }, type: 'game/updateGameState' });
+
+        expect(state.board).toEqual(initialState.board);
+        expect(state.score).toBe(initialState.score);
+    });
 });

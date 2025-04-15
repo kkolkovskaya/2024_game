@@ -9,7 +9,7 @@ export default {
         '^.+\\.(css|less|scss)$': 'babel-jest',
     },
     collectCoverage: true,
-    collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts'],
+    collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts', '!src/entities/**/*', '!src/redux/store.ts'],
     coverageThreshold: {
         global: {
             branches: 80,
