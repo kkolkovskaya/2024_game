@@ -6,7 +6,7 @@ import Tile from '../Tile/Tile';
 import { initGame, move, addTile, mockGameOver } from '../../redux/gameSlice/gameSlice';
 import { addToHistory } from '../../redux/historySlice/historySlice';
 
-import styles from './GameBoard.module.scss';
+import * as styles from './GameBoard.module.scss';
 
 const GameBoard = () => {
     const board = useSelector((state: RootState) => state.game.board);

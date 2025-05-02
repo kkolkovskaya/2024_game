@@ -1,4 +1,4 @@
-import styles from './Tile.module.scss';
+import * as styles from './Tile.module.scss';
 import { TileProps } from './Tile.interface';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';

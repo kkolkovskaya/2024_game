@@ -4,7 +4,7 @@ import Button from '../Button/Button';
 import { ModalProps } from './Modal.interface';
 import { useCallback } from 'react';
 
-import styles from './Modal.module.scss';
+import * as styles from './Modal.module.scss';
 
 const Modal = ({ closeModal, confirmAction }: ModalProps) => {
     const handleContentClick = useCallback((event: React.MouseEvent) => {

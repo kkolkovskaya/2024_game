@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correct component layout 1`] = `
+<div>
+  <div>
+    <header
+      class="header"
+    >
+      <div
+        class="logo"
+      >
+        2048
+      </div>
+      <div>
+        <div>
+          Score
+        </div>
+        <div>
+          0
+        </div>
+      </div>
+      <div>
+        <button
+          class="button"
+        >
+          New Game
+        </button>
+      </div>
+    </header>
+    <div
+      data-testid="gameBoard"
+    >
+      GameBoard
+    </div>
+    <div
+      class="container"
+    >
+      <button
+        class="button disabled"
+        disabled=""
+      >
+        Undo
+      </button>
+    </div>
+  </div>
+</div>
+`;

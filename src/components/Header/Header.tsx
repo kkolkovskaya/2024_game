@@ -4,7 +4,7 @@ import type { RootState } from '../../redux/store';
 import Button from '../UI/Button/Button';
 import Card from '../UI/Card/Card';
 
-import styles from './Header.module.scss';
+import * as styles from './Header.module.scss';
 import { HeaderProps } from './Header.interface';
 
 const Header = ({ openModal }: HeaderProps) => {

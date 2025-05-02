@@ -6,7 +6,7 @@ export default {
         '^.+\\.module\\.(css|scss)$': 'jest-css-modules-transform',
     },
     moduleNameMapper: {
-        '^.+\\.(css|less|scss)$': 'babel-jest',
+        '^.+\\.(css|less|scss)$': 'identity-obj-proxy',
     },
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.{js,jsx,ts,tsx}', '!src/**/*.d.ts', '!src/entities/**/*', '!src/redux/store.ts'],
@@ -23,4 +23,6 @@ export default {
             diagnostics: false,
         },
     },
+    testEnvironment: 'jsdom',
+    setupFilesAfterEnv: ['<rootDir>/setupTests.ts'],
 };

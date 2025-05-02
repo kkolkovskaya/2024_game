@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header should render correct component layout when gameOver is false 1`] = `
+<div>
+  <header
+    class="header"
+  >
+    <div
+      class="logo"
+    >
+      2048
+    </div>
+    <div>
+      <div>
+        Score
+      </div>
+      <div>
+        100
+      </div>
+    </div>
+    <div>
+      <button
+        class="button"
+      >
+        New Game
+      </button>
+    </div>
+  </header>
+</div>
+`;
+
+exports[`Header should render correct component layout when gameOver is true 1`] = `
+<div>
+  <header
+    class="header"
+  >
+    <div
+      class="gameOver"
+    >
+      <div
+        class="goTitle"
+      >
+        Game Over
+      </div>
+      <div
+        class="goSubtitle"
+      >
+        100
+         points scored
+      </div>
+    </div>
+  </header>
+</div>
+`;

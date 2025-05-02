@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GameBoard should render correct component layout 1`] = `
+<div>
+  <div
+    class="board"
+  >
+    <div
+      class="tile"
+      data-value="2"
+    >
+      2
+    </div>
+    <div
+      class="tile empty"
+      data-value="0"
+    />
+    <div
+      class="tile"
+      data-value="2"
+    >
+      2
+    </div>
+    <div
+      class="tile"
+      data-value="4"
+    >
+      4
+    </div>
+    <div
+      class="tile empty"
+      data-value="0"
+    />
+    <div
+      class="tile"
+      data-value="4"
+    >
+      4
+    </div>
+    <div
+      class="tile empty"
+      data-value="0"
+    />
+    <div
+      class="tile"
+      data-value="8"
+    >
+      8
+    </div>
+    <div
+      class="tile"
+      data-value="2"
+    >
+      2
+    </div>
+    <div
+      class="tile"
+      data-value="8"
+    >
+      8
+    </div>
+    <div
+      class="tile"
+      data-value="2"
+    >
+      2
+    </div>
+    <div
+      class="tile empty"
+      data-value="0"
+    />
+    <div
+      class="tile"
+      data-value="4"
+    >
+      4
+    </div>
+    <div
+      class="tile empty"
+      data-value="0"
+    />
+    <div
+      class="tile"
+      data-value="4"
+    >
+      4
+    </div>
+    <div
+      class="tile"
+      data-value="2"
+    >
+      2
+    </div>
+  </div>
+</div>
+`;

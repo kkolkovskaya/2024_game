@@ -4,6 +4,11 @@
     "compilerOptions": {
         "lib": ["es5", "es6", "dom", "dom.iterable"],
         "jsx": "react-jsx",
-        "typeRoots": ["./node_modules/@types", "./src/types"]
+        "typeRoots": ["./node_modules/@types", "./src/types"],
+        "moduleResolution": "node",
+        "types": ["@testing-library/jest-dom"]
+    },
+    "moduleNameMapper": {
+        "\\.module\\.(css|scss)$": "identity-obj-proxy"
     }
 }

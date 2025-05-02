@@ -11,6 +11,7 @@ export const getEmptyTails = (board: number[][]): number[][] => {
             }
         }
     }
+
     return empty;
 };
 

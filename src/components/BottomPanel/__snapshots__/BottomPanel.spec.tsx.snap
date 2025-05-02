@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BottomPanel should not render Play Again button if the game is not over 1`] = `
+<div>
+  <div
+    class="container"
+  >
+    <button
+      class="button disabled"
+      disabled=""
+    >
+      Undo
+    </button>
+  </div>
+</div>
+`;
